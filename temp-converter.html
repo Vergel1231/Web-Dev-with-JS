@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature Converter</title>
+</head>
+
+<body>
+    <h2>Temperature Converter</h2>
+
+    <label for="temp">Enter Temperature:</label>
+    <input type="number" id="temp" placeholder="e.g., 37"><br><br>
+
+    <label for="scale">Select Scale:</label>
+    <select id="scale">
+        <option value="C">Celsius</option>
+        <option value="F">Fahrenheit</option>
+    </select><br><br>
+
+    <button onclick="thermometer()">Convert</button>
+
+    <p id="output"></p>
+
+    <script>
+        function thermometer() {
+            let temp = document.getElementById("temp").value;
+            let scale = document.getElementById("scale").value;
+
+            if (temp === "") {
+                document.getElementById("output").innerText = "Please enter a temperature.";
+                console.log("No temperature entered.");
+                return;
+            }
+
+            let result;
+            if (scale === "C") {
+                // Convert Celsius → Fahrenheit
+                result = (parseFloat(temp) * 9 / 5) + 32;
+                document.getElementById("output").innerText =
+                    temp + "°C = " + result.toFixed(2) + "°F";
+                console.log(temp + "°C converted to " + result.toFixed(2) + "°F");
+            } else {
+                // Convert Fahrenheit → Celsius
+                result = (parseFloat(temp) - 32) * 5 / 9;
+                document.getElementById("output").innerText =
+                    temp + "°F = " + result.toFixed(2) + "°C";
+                console.log(temp + "°F converted to " + result.toFixed(2) + "°C");
+            }
+        }
+    </script>
+</body>
+
+</html>
