@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            width: 350px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0 12px 0;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        input::placeholder {
+            color: #888;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #result,
+        #average,
+        #remarks {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .passed {
+            color: green;
+        }
+
+        .failed {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Grade Calculator</h2>
+
+        <label>Project (25%)</label>
+        <input type="number" id="project" placeholder="Enter project grade" min="0" max="100">
+
+        <label>Quiz (15%)</label>
+        <input type="number" id="quiz" placeholder="Enter quiz grade" min="0" max="100">
+
+        <label>Midterm (25%)</label>
+        <input type="number" id="midterm" placeholder="Enter midterm grade" min="0" max="100">
+
+        <label>Finals (25%)</label>
+        <input type="number" id="finals" placeholder="Enter finals grade" min="0" max="100">
+
+        <label>Activities (10%)</label>
+        <input type="number" id="activities" placeholder="Enter activities grade" min="0" max="100">
+
+        <button onclick="calculateGrade()">Calculate</button>
+
+        <div id="result"></div>
+        <div id="average"></div>
+        <div id="remarks"></div>
+    </div>
+
+    <script>
+        function calculateGrade() {
+            let project = parseFloat(document.getElementById("project").value) || 0;
+            let quiz = parseFloat(document.getElementById("quiz").value) || 0;
+            let midterm = parseFloat(document.getElementById("midterm").value) || 0;
+            let finals = parseFloat(document.getElementById("finals").value) || 0;
+            let activities = parseFloat(document.getElementById("activities").value) || 0;
+
+            let finalGrade =
+                (project * 0.25) +
+                (quiz * 0.15) +
+                (midterm * 0.25) +
+                (finals * 0.25) +
+                (activities * 0.10);
+
+            let average = finalGrade;
+
+            let remarks = average >= 75 ? "Passed" : "Failed";
+            let remarksClass = average >= 75 ? "passed" : "failed";
+
+            document.getElementById("result").textContent =
+                "Final Grade: " + finalGrade.toFixed(2);
+
+            document.getElementById("average").textContent =
+                "Average: " + average.toFixed(2);
+
+            let remarksDiv = document.getElementById("remarks");
+            remarksDiv.textContent = "Remarks: " + remarks;
+            remarksDiv.className = remarksClass;
+        }
+    </script>
+
+</body>
+
+</html>
